@@ -52,9 +52,16 @@ The model has a fixed skeleton. Use the exact headings in `references/output-tem
 
 **`## What it says about {Name}`.** One short synthesis: what the patterns together say about how they construct reality and what they treat as real. This is the shareable centerpiece, and it may make a larger interpretive claim on one condition: every claim traces back to a pattern named above. This is the climb from "what they do" to "what it means," the step that separates a portrait from an inventory.
 
+**`## Product building choices`.** A second spine, parallel to the patterns but pointed at the product they are making instead of the method they are using: the forks where two or more options were genuinely live and they committed to one. A run of `### ` entries, as many as the session shows and **zero if it shows none** (a thin session, or one that did no product building, writes nothing here, the same discipline as the pattern count). Discover them fresh from THIS session, never forcing a prior session's forks onto this one. Each entry is a plain English heading naming the choice, then three beats in order:
+- **What it builds:** the kind of thing this choice produces in the product (lean, owned, derived, voiced, and so on), written for a reader with zero context, quoting the real moment.
+- **What they chose against:** the option they killed and what it had going for it (faster, easier, more complete, more standard). The rejected branch is the whole point and is usually implicit, so reconstruct it from the trace even when they never stated it aloud.
+- **What it implies (conjecture):** what the choice says about how they think a product should be, phrased as a guess from this session only and marked as such, never as an established trait.
+
+Attribute every fork to *their own* move (a rename, a cut, an override, a deferral, a reframe that dissolved an option), never the assistant's default that they merely accepted: in many sessions the assistant builds and the user directs, so the taste lives in what they actively chose or refused. Optionally close the section with one line reading the session's product philosophy off the forks together. Keep that line distinct from `## What it says about {Name}`: that one is how they reason toward truth, this one is what they treat as a good product. If the product line would only restate the method synthesis, drop it.
+
 **`## The shadow`.** The cost or failure mode of the strengths, about the person and not about the model's reliability (that goes under Honest limit). Where does this way of working expose them? A model that only finds good things is broken.
 
-**`## Predictions`.** 3 to 5 concrete, observable predictions about the next session, the kind that would embarrass you if wrong. **This is the one hard, falsifiable part of the model**, and the anchor the next diff bites on. Test each: *could the next trace prove this false?* If not, rewrite it until it can.
+**`## Predictions`.** 3 to 5 concrete, observable predictions about the next session, the kind that would embarrass you if wrong. **This is the one hard, falsifiable part of the model**, and the anchor the next diff bites on. Test each: *could the next trace prove this false?* If not, rewrite it until it can. When the session surfaced product building choices, promote the strongest fork criterion into a prediction here, a *taste bet* such as "faced with store versus derive, they derive," so the claim about their product thinking gets checked next session instead of only asserted; mark it as a taste bet so the diff can group it.
 
 **`## Honest limit`.** What this read cannot support: a single mode sampled, hype that is mood and not method, too thin a slice to call structure. This is the caveat about the *data*, kept separate from the shadow.
 
@@ -69,7 +76,7 @@ The diff has two anchors, and they carry different weight. Keep them separate.
 - **DRIFT (trusted)**: the prior model predicted X and the session did not X. This is the strongest, most trustworthy signal in the whole skill, because it was committed to in advance and the trace overruled it. A clearly different move visible in the trace itself (not just in word choice) also counts, but a violated prediction is the gold standard.
 - **Untested**: the session never created the occasion to confirm or refute the prediction (common when the modes differ). Say so; do not score it either way.
 
-**The soft anchor: recurring patterns (a ledger, explicitly weaker).** Because the patterns are discovered fresh each session, they will not line up slot for slot, so match them by *meaning*, not by name. Note which patterns from prior instances reappear here (a pattern recurring across several sessions is mounting soft evidence it is real structure) and which are absent. Treat this as suggestive only: an absent pattern is just as likely an untested mode as a real change, and pattern recurrence is **never** hard evidence on its own. The predictions police; the pattern ledger only hints.
+**The soft anchor: recurring patterns (a ledger, explicitly weaker).** Because the patterns are discovered fresh each session, they will not line up slot for slot, so match them by *meaning*, not by name. Note which patterns from prior instances reappear here (a pattern recurring across several sessions is mounting soft evidence it is real structure) and which are absent. Treat this as suggestive only: an absent pattern is just as likely an untested mode as a real change, and pattern recurrence is **never** hard evidence on its own. The predictions police; the pattern ledger only hints. The product building choices feed this same ledger: note which fork criteria recur across sessions, because a criterion that holds across different kinds of product is soft evidence of a stable product taste. A prior taste bet, because it lives among the predictions, is checked exactly like any other prediction in the hard anchor above.
 
 **WOBBLE (quarantined, applies to both anchors).** A difference with no trace backing (rephrasing, the assistant's vocabulary bleeding into the model, a topic shift dressed up as a method shift, two patterns that are the same move under different names) is noise. List it separately, marked as probable noise. Never report wobble as growth.
 
@@ -93,8 +100,8 @@ Never overwrite an existing file. Each session is its own file, so the full traj
 ## Output
 
 Two artifacts, in order, using `references/output-templates.md`:
-- **Output A**: `model_n`, the portrait: an `H1` title, a one line Context, `## Mental model patterns` (the `H3` observations), `## What it says about {Name}`, `## The shadow`, `## Predictions`, `## Honest limit`.
-- **Output B**: the diff (held + drift on the predictions, the soft recurring pattern ledger, quarantined wobble, explanation)
+- **Output A**: `model_n`, the portrait: an `H1` title, a one line Context, `## Mental model patterns` (the `H3` observations), `## What it says about {Name}`, `## Product building choices` (the `H3` forks, when the session had them), `## The shadow`, `## Predictions`, `## Honest limit`.
+- **Output B**: the diff (held + drift on the predictions, taste bets included; the soft ledger of recurring patterns and fork criteria; quarantined wobble; explanation)
 
 For instance 1, emit Output A only and state that the diff begins next session.
 

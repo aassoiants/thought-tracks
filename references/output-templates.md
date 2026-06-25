@@ -48,6 +48,18 @@ Third person, using the user's name when the trace shows it, otherwise "the user
 ## What it says about {Name}
 {One short synthesis: what the patterns together say about how they construct reality and what they treat as real. The shareable centerpiece. It may make a larger claim, but every claim ties back to a pattern above.}
 
+## Product building choices
+{The forks where two or more options were genuinely live and they committed to one. As many `### ` entries as the session shows, and none at all if it shows none. Discovered fresh from this session, attributed to their own move and not the assistant's default they accepted.}
+
+### {Plain English heading naming the choice}
+- **What it builds:** {the kind of thing this choice produces in the product, for a cold reader, quoting the moment.}
+- **What they chose against:** {the option they killed and what it had going for it. Reconstruct the rejected branch even when they never said it aloud.}
+- **What it implies (conjecture):** {what it says about how they think a product should be. A guess from this session only, marked as such, never an established trait.}
+
+### {next fork, same three beats, or omit the whole section on a thin session}
+
+*{Optional closing line: the session's product philosophy read off the forks together. Distinct from "What it says about {Name}", which is how they reason toward truth; this is what they treat as a good product. Drop it if it would only restate that.}*
+
 ## The shadow
 {The cost or failure mode of the strengths, about the person: where this way of working exposes them. Not the model's reliability, which goes under Honest limit.}
 
@@ -55,6 +67,7 @@ Third person, using the user's name when the trace shows it, otherwise "the user
 {3 to 5 concrete, observable predictions about the next session, the kind that would embarrass you if wrong. The one hard, falsifiable part. On a backfill these are retrodictive, written after the session ended; keep this heading and record the provenance in frontmatter (`extraction: backfill`).}
 - {Observable move 1}
 - {...up to 5}
+- {taste bet, when the session had product building choices: the strongest fork criterion written as a falsifiable prediction, e.g. "faced with store versus derive, they derive." Mark it as a taste bet so the diff groups it.}
 
 ## Honest limit
 {What this read cannot support: one mode sampled, hype that is mood not method, too thin a slice to call structure. The caveat about the data, separate from the shadow.}
@@ -86,6 +99,7 @@ Third person, using the user's name when the trace shows it, otherwise "the user
 
 **Recurring patterns (soft signal, NOT hard evidence):**
 - {Pattern from a prior instance that reappears here, matched by meaning not by name. Recurrence across several sessions is mounting soft evidence it is real structure. An absent prior pattern is noted too, but is as likely an untested mode as a real change.}
+- {Recurring fork criterion from a prior instance's product building choices, matched by meaning. A criterion that holds across different kinds of product is soft evidence of a stable product taste. Prior taste bets are checked above among the predictions, not here.}
 
 **WOBBLE (quarantined, probable extractor noise, NOT reported as change):**
 - {Difference with no trace backing: rephrasing, assistant vocabulary bleed, topic shift mislabeled as method shift, two patterns that are the same move under different names.}

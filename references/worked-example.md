@@ -2,7 +2,7 @@
 
 A completed model, so the shape is concrete before you write one. The person here is fictional, a composite built to show the format. The session modeled is a debugging and design session on a billing service: chase down a flaky payment webhook, then design a retry system so it stops happening. The diff at the bottom is illustrative, showing how a later session would compare against this one.
 
-This is illustrative, not a rule. Match the user's actual moves; don't force this one's patterns onto your subject. Write in the third person using the user's name. Plain prose, no em dashes. Discover the patterns fresh, and surface as many as the session genuinely shows rather than hitting a number.
+This is illustrative, not a rule. Match the user's actual moves; don't force this one's patterns onto your subject. Write in the third person using the user's name. Plain prose, no em dashes. Discover the patterns fresh, and surface as many as the session genuinely shows rather than hitting a number. The same holds for the product building choices below: as many as the session genuinely shows, or none.
 
 The model below uses real heading levels (H1 title, H2 sections, H3 observations), so it renders as the actual file would.
 
@@ -35,6 +35,20 @@ Devon aims the same distrust at his own solution that he aimed at the bug. After
 ## What it says about Devon
 Devon starts from the assumption that the system is broken in a way he has not found yet, and he does not stop at the first thing he turns up. He refuses to believe any story until it reproduces, and climbs past the first explanation to the one that produced it. Then he fixes the whole class rather than the case, and turns the same suspicion on his own patch. Underneath all of it is a flat assumption that the failure has a real bottom: one true generating cause, reachable if you keep descending, and the job is to reach it rather than to ship the first plausible mitigation.
 
+## Product building choices
+
+### Devon builds idempotency into the shared mechanism so no caller can get it wrong
+- **What it builds:** a request path where the idempotency key is enforced by the shared helper itself, so every handler is safe by construction instead of safe only when its author remembers to pass the right token.
+- **What he chose against:** leaving the key as each handler's responsibility, which is more flexible and a smaller change, but lets any new handler reintroduce the exact double charge he just chased to the floor.
+- **What it implies (conjecture):** for Devon a good system makes the unsafe thing impossible rather than merely discouraged, building correctness into the mechanism instead of trusting discipline at each call site. From this session only, testable the next time correctness could be enforced centrally or left to each caller.
+
+### Devon picks the durable retry that fails slowly over the simple one that fails silently
+- **What it builds:** a retry backed by a queue that survives a crash and never drops an attempt, at the cost of added latency and a queue that can itself back up. He booked the trade out loud: "I traded a sharp failure for a slow one, a double charge for a charge that lands an hour late. Better, but not free."
+- **What he chose against:** a simpler inline retry with no new moving part, which would have shipped sooner but could lose attempts in silence when a process died mid retry.
+- **What it implies (conjecture):** Devon would rather his system fail slowly and in the open than quickly and in silence, and he will pay infrastructure and latency for a failure he can see and reason about. A guess from this session, testable when he next picks between a simple lossy path and a costlier durable one.
+
+*Product philosophy this session: a good system makes the unsafe thing impossible rather than merely discouraged, and fails slowly and in the open rather than fast and in silence, even when the looser, simpler build would ship sooner.*
+
 ## The shadow
 The descent that makes Devon thorough also makes him slow, and occasionally bottomless. Not every bug has a deep generating cause worth chasing to the floor; some are a typo, and the right move is to fix it and leave. The instinct to reach the true root and kill the whole class can gold plate a one line change, and "keep going until you hit the bottom" has no built in place to stop. Devon is exposed where the depth outruns the stakes, where chasing the real cause costs more than the symptom ever would have, and he is least likely to notice it there, because going deeper always feels like the rigorous thing to do.
 
@@ -45,6 +59,7 @@ Falsifiable against the next session:
 - Will fix the class of failure rather than the single instance that fired.
 - Will build the kill switch, ceiling, or rollback before the thing it is meant to contain.
 - Will turn his own fix into the next suspect and name the liability it introduces, unprompted.
+- (taste bet) Given a choice between enforcing correctness in a shared mechanism and leaving it to each caller's discipline, will enforce it centrally, even at the cost of flexibility.
 
 ## Honest limit
 This is one incident driven debugging and design session, the exact mode that rewards descending to the root, on a high stakes payment path where the depth is warranted. It says little about how Devon reasons in greenfield design with no failure to anchor on, or when the job is to explore and expand rather than harden, or under a deadline that punishes the slow deep pass. Read it as how Devon works a system that is actively betraying him, not how he works when the stakes are low or the canvas is blank.
@@ -70,6 +85,7 @@ This is one incident driven debugging and design session, the exact mode that re
 **Recurring patterns (soft signal, NOT hard evidence):**
 - Reproduce before believing recurs (the replay script). In the greenfield build there was nothing to reproduce, so its absence there was an untested mode, not a real change. Soft evidence it is real structure.
 - Fix the class recurs in spirit: he generalized the feature for every case in the build, and generalized the fix for every handler here.
+- The safety by construction fork (enforce correctness in the mechanism over trusting each caller) is a product building choice; the same instinct to build the guard into the system showed in the greenfield build, so it joins the soft ledger as mounting evidence of a stable product taste.
 
 **WOBBLE (quarantined, probable noise):**
 - The shift from building a feature to debugging a webhook is a change of task, not of method.
