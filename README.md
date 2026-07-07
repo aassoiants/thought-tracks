@@ -55,7 +55,7 @@ Two ways to run it, the same portrait either way.
 
 **Installed as a skill** (in Claude Code, Cursor, or any agent that supports skills), say "run thought tracks" at the end of a session. It reads the whole transcript, writes the portrait, and diffs it against your last one. Automatic, every time, and your record builds itself.
 
-**In any other chatbot,** paste one prompt as your final message. It reads the conversation you just had and emits the same portrait. Copy it into your record and the picture keeps building.
+**In any other chatbot,** paste one prompt as your final message. It reads the conversation you just had and emits the same portrait. Back home, one command ("import this portrait") files it into your record and the picture keeps building.
 
 Both produce the same thing: a cited portrait of how you reasoned, with falsifiable predictions for next time. You are always adding to one record of how you think, and the installed skill diffs each new run against that record and shows you what held, what moved, and what is just noise.
 
@@ -73,7 +73,7 @@ npx skills add aassoiants/thought-tracks
 
 Then end any session with "run thought tracks."
 
-In any other chatbot, there is nothing to install. Paste the portable prompt as your last message and copy back the portrait it writes. The prompt is in [references/portable-closeout-prompt.md](references/portable-closeout-prompt.md).
+In any other chatbot, there is nothing to install. Paste the portable prompt as your last message and copy back the portrait it writes. The prompt is in [references/portable-closeout-prompt.md](references/portable-closeout-prompt.md). Then say "import this portrait" where the skill is installed and it files itself into your record, checked against the honesty guards on the way in.
 
 And to fill in your history, **backfill** a past session straight from its saved transcript.
 
