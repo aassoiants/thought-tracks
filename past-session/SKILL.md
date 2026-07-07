@@ -57,14 +57,16 @@ Privacy: model the reasoning, never reproduce secrets, credentials, tokens, or p
 
 ### Step 3: Write the model file (no diff)
 
-Write into the **same store the live skill uses**: `~/.thought-tracks/` (on Windows, `%USERPROFILE%\.thought-tracks\`). Create it if it is missing.
+Write into the **same store the live skill uses**: `~/.thought-tracks/` (on Windows, `%USERPROFILE%\.thought-tracks\`). If the store is missing entirely, confirm with the user before creating it; a missing store can be a path mistake rather than a true first entry.
 
-The filename starts with the date so the directory reads in time order: `YYYY-MM-DD-<label>.md`, using `date_start`. If a file for that start date already exists, add a two digit sequence for that day (`YYYY-MM-DD-02-<label>.md`) so names stay unique. Never overwrite an existing file.
+The filename is **number prefixed and marked as a backfill**: `NNN-backfill-YYYY-MM-DD-<label>.md`, where `NNN` is the next running number in the store (one more than the highest number anywhere; if the store holds unnumbered date named files from an earlier version, count them and start after them, per the main skill's legacy note) and the date is `date_start`. The number is production order, when you backfill it now, not the session's date; the `backfill` marker and `extraction: backfill` say it is not a live forward bet. Never overwrite an existing file, and never renumber the files already in the store; this run just appends the next number.
 
 Frontmatter:
 ```yaml
 ---
-date_start: YYYY-MM-DD     # or a single `date:` when start and end are the same day
+output_at: 2026-06-15T18:30:00Z   # UTC, ISO 8601 with Z: when first written; permanent ordering key, never changes
+# updated_at: 2026-06-20T10:00:00Z # add ONLY if you re-run this backfill in place; leave output_at and the number alone
+date_start: YYYY-MM-DD     # session dates, from the transcript; or a single `date:` when start and end are the same day
 date_end: YYYY-MM-DD       # omit when a single day
 session_label: "<label>"
 artifact_type: "extract (model_n), backfill, Output A only"
@@ -74,7 +76,7 @@ project: "<project>"
 extraction: backfill
 ---
 ```
-Do not assign a live `instance:` number. The date is the identity, and a backfill must not consume a slot in the live instance sequence. Emit Output A in the conversation as well, so the user sees what was stored.
+Do not assign a live `instance:` number, that field is for live forward bets only. The backfill's place in the store is its filename number (production order, when you backfill it); its session date lives in `date_start`. It takes the next running number but never anchors the live diff. Emit Output A in the conversation as well, so the user sees what was stored. **Then append a row to the store's `index.md`**, in the table's column order: `| NNN | <output_at> |  |  | <session start> | <session end> | backfill | <filename without .md> |  |` (the blank cells are `updated_at`, `inst`, and `note`; a backfill has no instance). The index is a derived view of the portraits' frontmatter, ordered by `output_at`, so the row lands at the bottom; if the index does not exist yet, create it with the header the main skill's Step 4 describes.
 
 ## Why no diff (do not add one)
 

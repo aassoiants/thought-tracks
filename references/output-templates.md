@@ -6,23 +6,26 @@ Use these verbatim as the skeleton. Keep entries concrete and short, this is a c
 
 ## Stored file frontmatter
 
-Every file in the store (`~/.thought-tracks/`) opens with a YAML block. The dates are what Step 1 sorts the store by, so they carry the provenance, not just the Output A header.
+Every file in the store (`~/.thought-tracks/`) opens with a YAML block. `output_at` is what Step 1 orders the store by (it equals the filename number); the session dates carry the provenance.
 
 ```yaml
 ---
-instance: 6                   # live runs only; a backfill omits this (its date is the identity)
+output_at: 2026-06-15T18:30:00Z   # UTC, when the file was FIRST written; the permanent ordering key, never changes
+# updated_at: 2026-06-20T10:00:00Z # only when a portrait is re-run in place; the number and output_at stay put
+instance: 6                   # live runs only; backfills and foreign portraits omit this
 date: 2026-06-01              # a single day session
 # For a session that genuinely spanned days, drop `date` and give the real span instead:
 # date_start: 2026-05-03
 # date_end: 2026-05-17
 session_label: "short label"
-artifact_type: "extract (model_n) + diff (Output A + B)"   # backfill: "extract (model_n), backfill, Output A only"
-source: "thought-tracks skill run"           # backfill: "thought-tracks-past-session (saved transcript)"
-extraction: live              # or: backfill
+artifact_type: "extract (model_n) + diff (Output A + B)"   # backfill: "extract (model_n), backfill, Output A only" / foreign: "extract (model_n), foreign port, Output A only"
+source: "thought-tracks skill run"           # backfill: "thought-tracks-past-session (saved transcript)" / foreign: "portable closeout prompt (<app>)"
+platform: "ChatGPT"           # foreign only: which app or model the chat was in
+extraction: live              # or: backfill, foreign
 ---
 ```
 
-The filename starts with the date (`YYYY-MM-DD-<label>.md`, using `date_start`); add a two digit sequence for that day (`-02-`) only when a start date already has a file. The store is ordered by the frontmatter dates, not by filename. See SKILL.md Steps 1 and 4.
+The filename starts with the running number, which is the identity: live `NNN-YYYY-MM-DD-<label>.md`, backfill `NNN-backfill-YYYY-MM-DD-<label>.md`, foreign `NNN-foreign-<label>.md`. The number is production order (the `output_at` order), the dates are provenance, and each number is unique so no same day suffix is needed. The store's `index.md` holds one derived row per portrait. See SKILL.md Steps 1 and 4.
 
 ---
 
